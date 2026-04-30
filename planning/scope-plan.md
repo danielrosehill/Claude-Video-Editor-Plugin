@@ -2,7 +2,7 @@
 
 Internal roadmap for the public `video-editing` plugin. Gitignored — never ships to the published repo.
 
-Last updated: 2026-04-30 (after Sprint 6).
+Last updated: 2026-04-30 (after Sprint 7).
 
 ## Assumptions
 
@@ -22,7 +22,8 @@ Last updated: 2026-04-30 (after Sprint 6).
 | 1.6.0 | data-store path standardization | — |
 | 1.7.0 | +2 normalize-audio + auto-cut-silences, legacy cleanup | sprint 5 |
 | 1.8.0 | +6 subtitles + deliverables + graphics + music-video | sprint 6 |
-| **current: 1.8.0** | **20 skills** | |
+| 1.9.0 | +3 NAS lifecycle (setup-nas, pull-from-nas, push-to-nas) | sprint 7 |
+| **current: 1.9.0** | **23 skills** | |
 
 ---
 
@@ -60,6 +61,11 @@ Two-tier concept: **index** (base dir) → **project** (per-video workspace).
 - `auto-cut-silences/SKILL.md` — wraps `auto-editor` (from the shared uv venv) to remove dead air. Preview mode via `--export timeline`.
 - Deleted superseded legacy commands: `commands/check-codecs.md` (→ `profile-system`), `commands/extract-audio.md` (→ `audio-analysis`).
 
+### NAS lifecycle (v1.9.0 — sprint 7)
+- `setup-nas/SKILL.md` — register raw + archive paths to `nas.json`. Supports `mount` and `ssh` transports; verifies reachability without blocking.
+- `pull-from-nas/SKILL.md` — rsync raw clips into the active project's `raw/`. Read-only on source (no `--delete`), resumable via `--partial`, dry-run preview by default. Optional extension/recency/subfolder filters.
+- `push-to-nas/SKILL.md` — rsync `exports/` (default) or `renders/` to `<archive>/<project-slug>/`. Additive only; dry-run preview before commit.
+
 ### Subtitles + deliverables + music video (v1.8.0 — sprint 6)
 - `burn-subtitles/SKILL.md` — generate SRT (faster-whisper / whisper.cpp) and either save alongside, soft-mux as a track, or burn into picture. Backend + style read from `preferences.json`.
 - `clean-transcription/SKILL.md` — heuristic + optional LLM cleanup of SRT/TXT. Preserves cue count and timing. Per-project glossary support.
@@ -86,7 +92,7 @@ Two-tier concept: **index** (base dir) → **project** (per-video workspace).
 | `presets/` | `onboard` | `talking-head-eq` |
 | `venv/` | `deps-setup` | `auto-cut-silences`, future Python-backed skills |
 | `tools/` | `deps-setup` | future skills consuming VideoAgent / vit |
-| `nas.json` | `setup-nas` *(not built)* | `pull-from-nas`, `push-to-nas` *(not built)* |
+| `nas.json` | `setup-nas` | `pull-from-nas`, `push-to-nas` |
 
 ---
 
@@ -112,10 +118,7 @@ Roughly in priority order. None of these block what's already shipped.
 - `scrub-takes` — remove accidental short takes (configurable minimum duration).
 - `dedupe-clips` — find/remove duplicate or near-duplicate clips (hash + perceptual).
 
-### NAS lifecycle
-- `setup-nas` — register NAS path/mount + raw + render destinations to `nas.json`.
-- `pull-from-nas` — `rsync` raw clips from NAS into the active project's `raw/`.
-- `push-to-nas` — `rsync` rendered output up to the NAS render destination.
+### NAS lifecycle — shipped in sprint 7 (v1.9.0)
 
 ### Remaining legacy command convergence
 - `commands/add-watermark.md` is now superseded by `burn-graphics` — pending verification, then delete.

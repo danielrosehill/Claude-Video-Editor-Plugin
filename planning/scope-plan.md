@@ -2,7 +2,7 @@
 
 Internal roadmap for the public `video-editing` plugin. Gitignored — never ships to the published repo.
 
-Last updated: 2026-04-30 (after Sprint 8).
+Last updated: 2026-04-30 (after Sprint 9).
 
 ## Assumptions
 
@@ -24,7 +24,8 @@ Last updated: 2026-04-30 (after Sprint 8).
 | 1.8.0 | +6 subtitles + deliverables + graphics + music-video | sprint 6 |
 | 1.9.0 | +3 NAS lifecycle (setup-nas, pull-from-nas, push-to-nas) | sprint 7 |
 | 1.10.0 | +3 clip management (sort-clips-by, scrub-takes, dedupe-clips); retired 3 legacy commands | sprint 8 |
-| **current: 1.10.0** | **29 skills, 3 commands** | |
+| 1.11.0 | +3 editor integration (open-in-kdenlive, mlt-render, render-from-library) | sprint 9 |
+| **current: 1.11.0** | **32 skills, 3 commands** | |
 
 ---
 
@@ -77,6 +78,11 @@ Two-tier concept: **index** (base dir) → **project** (per-video workspace).
 - `onboard` extended: subtitle backend + model + style fields, audio-to-video templates seed.
 - `deps-setup` extended: faster-whisper + demucs added to install menu; whisper.cpp documented as a manual install.
 
+### Editor integration (v1.11.0 — sprint 9)
+- `open-in-kdenlive/SKILL.md` — `setsid`-detached launch of Kdenlive on a project's `working/` (most-recent `.kdenlive` auto-picked) or on a directly supplied path.
+- `mlt-render/SKILL.md` — headless render of `.kdenlive` / `.mlt` timelines via the `melt` CLI. Uses a named profile from `render-profiles.json` when supplied; warns about VAAPI/NVENC and recommends a two-step (intermediate → `render-with-profile`) path for hardware-encoded deliverables.
+- `render-from-library/SKILL.md` — assemble a folder of clips into one deliverable. Lossless concat path when all clips share signature; filter-graph re-encode otherwise. `name`/`mtime`/`manual` ordering, optional `xfade` crossfades, optional named render profile for the final encode.
+
 ### Clip management (v1.10.0 — sprint 8)
 - `sort-clips-by/SKILL.md` — bucket a flat folder of media into subfolders by `resolution` / `aspect` / `fps` / `codec` / `kind` (photo vs video). `mv`-only, dry-run preview before commit. Supersedes `commands/separate-4k.md` and `commands/separate-photos-and-video.md` (deleted).
 - `scrub-takes/SKILL.md` — quarantine clips below a minimum duration (default 3s) — moves to `_rejected/` by default; `delete` mode requires explicit second confirmation.
@@ -115,10 +121,7 @@ Roughly in priority order. None of these block what's already shipped.
 
 ### Subtitles + deliverables — shipped in sprint 6 (v1.8.0)
 
-### Editor integration
-- `mlt-render` — render an MLT XML timeline to a deliverable.
-- `open-in-kdenlive` — open a project's `working/` dir in Kdenlive.
-- `render-from-library` — assemble a single video from a library directory (concat + simple ordering).
+### Editor integration — shipped in sprint 9 (v1.11.0)
 
 ### Clip management — shipped in sprint 8 (v1.10.0)
 

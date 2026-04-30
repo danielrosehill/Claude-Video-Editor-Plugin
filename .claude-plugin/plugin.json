@@ -1,7 +1,7 @@
 {
   "name": "video-editing",
   "description": "Claude Code plugin for video editing, transcoding, video processing, and multimedia workflow automation.",
-  "version": "1.7.0",
+  "version": "1.8.0",
   "author": {
     "name": "Daniel Rosehill",
     "email": "public@danielrosehill.com",
@@ -34,7 +34,13 @@
     "./skills/onboard/SKILL.md",
     "./skills/deps-setup/SKILL.md",
     "./skills/normalize-audio/SKILL.md",
-    "./skills/auto-cut-silences/SKILL.md"
+    "./skills/auto-cut-silences/SKILL.md",
+    "./skills/burn-subtitles/SKILL.md",
+    "./skills/clean-transcription/SKILL.md",
+    "./skills/generate-deliverables/SKILL.md",
+    "./skills/burn-graphics/SKILL.md",
+    "./skills/karaoke-video/SKILL.md",
+    "./skills/audio-to-music-video/SKILL.md"
   ],
   "keywords": [
     "media-editing",

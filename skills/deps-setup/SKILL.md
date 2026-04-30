@@ -26,8 +26,11 @@ The venv path is stored as `preferences.python_venv` so it can be sourced later 
 | video-use | https://github.com/browser-use/video-use | Python (git) | `uv pip install git+https://github.com/browser-use/video-use` |
 | VideoAgent | https://github.com/HKUDS/VideoAgent | Python (git, research) | `git clone` + `uv pip install -r requirements.txt` |
 | vit | https://github.com/LucasHJin/vit | Python (git) | `git clone` + `uv pip install -r requirements.txt` |
+| faster-whisper | https://github.com/SYSTRAN/faster-whisper | Python (PyPI) | `uv pip install faster-whisper` |
+| demucs | https://github.com/facebookresearch/demucs | Python (PyPI) | `uv pip install demucs` |
 | LosslessCut | https://github.com/mifi/lossless-cut | Electron app | flatpak: `no.mifi.losslesscut` (fallback: AppImage) |
 | editly | https://github.com/mifi/editly | Node.js | `npm install -g editly` (warn: needs Cairo + ffmpeg) |
+| whisper.cpp | https://github.com/ggerganov/whisper.cpp | C++ binary | manual — clone, `make`, download GGML model. Record binary + model paths in preferences via `onboard`. |
 
 ## Procedure
 
@@ -70,8 +73,11 @@ Multi-select. Show each tool's purpose in one line:
 - **video-use** — agentic video understanding from browser-use
 - **VideoAgent** — research multi-agent video understanding (HKU)
 - **vit** — video transformer toolkit (LucasHJin)
+- **faster-whisper** — fast CPU/GPU whisper inference (used by `burn-subtitles`, `karaoke-video`)
+- **demucs** — Facebook Research stem separation (used by `karaoke-video`)
 - **LosslessCut** — GUI for fast lossless trim/cut
 - **editly** — declarative JSON → video composition (Node)
+- **whisper.cpp** — alternative pure-C++ whisper backend (manual install, see notes)
 
 ### 5. Install per selection
 
@@ -122,9 +128,22 @@ Update `preferences.json`:
     "auto-editor": { "installed": true, "method": "uv-pip", "venv": "...", "version": "..." },
     "VideoAgent":  { "installed": true, "method": "git+uv-pip", "path": "...tools/VideoAgent" },
     "lossless-cut":{ "installed": true, "method": "flatpak", "id": "no.mifi.losslesscut" },
-    "editly":      { "installed": true, "method": "npm-global", "version": "..." }
+    "editly":      { "installed": true, "method": "npm-global", "version": "..." },
+    "faster-whisper": { "installed": true, "method": "uv-pip", "venv": "..." },
+    "demucs":      { "installed": true, "method": "uv-pip", "venv": "..." }
   }
 }
+```
+
+For **whisper.cpp**, deps-setup does not auto-install (build environment varies — clang vs gcc, BLAS deps, AVX support). Print a one-block install hint and ask the user to run it themselves, then re-run `onboard` to register the binary + model paths:
+
+```
+git clone https://github.com/ggerganov/whisper.cpp ~/whisper.cpp
+cd ~/whisper.cpp && make
+bash ./models/download-ggml-model.sh small.en
+# then: re-run onboard and point subtitle_backend=whisper.cpp at:
+#   subtitle_model_path=~/whisper.cpp/models/ggml-small.en.bin
+#   binary on PATH: ~/whisper.cpp/main  (newer builds: whisper-cli)
 ```
 
 Write atomically (`.tmp` + `mv`).

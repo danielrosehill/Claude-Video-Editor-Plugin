@@ -101,6 +101,53 @@ Pre-record the path even before the venv exists, so `deps-setup` can find it:
 { "python_venv": "/abs/.../claude-plugins/video-editing/venv" }
 ```
 
+#### e) Subtitle backend
+
+Used by `burn-subtitles`, `generate-deliverables`, and `karaoke-video` (fallback path). Pick one:
+
+- `faster-whisper` — Python, fast on CPU, GPU optional. Installed via `deps-setup`.
+- `whisper.cpp` — pure C++, no Python deps. User installs separately; record the binary path and a GGML model file path.
+
+```json
+{
+  "subtitle_backend": "faster-whisper",
+  "subtitle_model": "small",
+  "subtitle_model_path": "/abs/path/to/ggml-small.en.bin",
+  "subtitle_style": {
+    "font": "Inter",
+    "size": 24,
+    "primary_colour": "&HFFFFFF",
+    "outline_colour": "&H000000",
+    "alignment": 2,
+    "margin_v": 40
+  }
+}
+```
+
+`subtitle_model_path` is only needed for whisper.cpp (which loads model files by path, not by name).
+
+#### f) Audio-to-video templates
+
+Used by `audio-to-music-video`. Seed with a built-in default if the user has none registered:
+
+```json
+{
+  "audio_to_video_templates": [
+    {
+      "name": "waveform-bottom",
+      "resolution": "1920x1080",
+      "fps": 30,
+      "bg": { "type": "cover-blur", "blur": 40, "darken": 0.3 },
+      "cover": { "size_pct": 60, "position": "center" },
+      "viz": { "filter": "showwaves", "mode": "cline", "color": "white", "height_pct": 15 }
+    }
+  ],
+  "default_audio_to_video_template": "waveform-bottom"
+}
+```
+
+Offer to register additional templates inline; otherwise point the user at `audio-to-music-video`'s prose for the full list of presets.
+
 ### 3. Write atomically
 
 ```bash

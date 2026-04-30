@@ -12,7 +12,7 @@ Walks the user through registering per-user preferences for the video-editing pl
 The plugin is publicly distributed — nothing user-specific is bundled. Everything collected here lives only on the user's machine, in:
 
 ```
-${XDG_DATA_HOME:-$HOME/.local/share}/claude-media-plugins/video-editing/preferences.json
+${CLAUDE_USER_DATA:-${XDG_DATA_HOME:-$HOME/.local/share}/claude-plugins}/video-editing/preferences.json
 ```
 
 ## Procedure
@@ -20,7 +20,7 @@ ${XDG_DATA_HOME:-$HOME/.local/share}/claude-media-plugins/video-editing/preferen
 ### 1. Resolve config
 
 ```bash
-DATA_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/claude-media-plugins/video-editing"
+DATA_DIR="${CLAUDE_USER_DATA:-${XDG_DATA_HOME:-$HOME/.local/share}/claude-plugins}/video-editing"
 PREFS_FILE="$DATA_DIR/preferences.json"
 PRESETS_DIR="$DATA_DIR/presets"
 mkdir -p "$DATA_DIR" "$PRESETS_DIR"
@@ -98,7 +98,7 @@ If `render-profiles.json` already exists, list saved profiles and ask which is t
 Pre-record the path even before the venv exists, so `deps-setup` can find it:
 
 ```json
-{ "python_venv": "/abs/.../claude-media-plugins/video-editing/venv" }
+{ "python_venv": "/abs/.../claude-plugins/video-editing/venv" }
 ```
 
 ### 3. Write atomically

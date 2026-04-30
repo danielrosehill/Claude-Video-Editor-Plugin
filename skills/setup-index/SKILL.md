@@ -14,7 +14,7 @@ The **video index** is the top-level directory under which every video project l
 ### 1. Check for existing config
 
 ```bash
-DATA_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/claude-media-plugins/video-editing"
+DATA_DIR="${CLAUDE_USER_DATA:-${XDG_DATA_HOME:-$HOME/.local/share}/claude-plugins}/video-editing"
 INDEX_FILE="$DATA_DIR/index.json"
 test -f "$INDEX_FILE" && cat "$INDEX_FILE"
 ```

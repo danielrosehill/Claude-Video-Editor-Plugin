@@ -12,7 +12,7 @@ Optional installer for third-party video-editing tools. The user picks a subset;
 Python-based tools share a single `uv`-managed virtualenv at:
 
 ```
-${XDG_DATA_HOME:-$HOME/.local/share}/claude-media-plugins/video-editing/venv
+${CLAUDE_USER_DATA:-${XDG_DATA_HOME:-$HOME/.local/share}/claude-plugins}/video-editing/venv
 ```
 
 The venv path is stored as `preferences.python_venv` so it can be sourced later (e.g. `"$PYTHON_VENV/bin/python" -m moviepy ...`).
@@ -34,7 +34,7 @@ The venv path is stored as `preferences.python_venv` so it can be sourced later 
 ### 1. Resolve config
 
 ```bash
-DATA_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/claude-media-plugins/video-editing"
+DATA_DIR="${CLAUDE_USER_DATA:-${XDG_DATA_HOME:-$HOME/.local/share}/claude-plugins}/video-editing"
 PREFS_FILE="$DATA_DIR/preferences.json"
 TOOLS_DIR="$DATA_DIR/tools"
 VENV_DIR="$DATA_DIR/venv"

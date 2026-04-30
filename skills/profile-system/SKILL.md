@@ -14,7 +14,7 @@ Detect the host's GPU and ffmpeg encoder capabilities so other skills (`create-r
 ### 1. Set up paths
 
 ```bash
-DATA_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/claude-media-plugins/video-editing"
+DATA_DIR="${CLAUDE_USER_DATA:-${XDG_DATA_HOME:-$HOME/.local/share}/claude-plugins}/video-editing"
 PROFILE_FILE="$DATA_DIR/system-profile.json"
 mkdir -p "$DATA_DIR"
 ```

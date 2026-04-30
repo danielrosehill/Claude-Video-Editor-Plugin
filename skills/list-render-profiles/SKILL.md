@@ -12,7 +12,7 @@ Print the names and key settings of every saved render profile.
 ## Procedure
 
 ```bash
-PROFILES_FILE="${XDG_DATA_HOME:-$HOME/.local/share}/claude-media-plugins/video-editing/render-profiles.json"
+PROFILES_FILE="${CLAUDE_USER_DATA:-${XDG_DATA_HOME:-$HOME/.local/share}/claude-plugins}/video-editing/render-profiles.json"
 test -f "$PROFILES_FILE" || { echo "No render profiles saved yet. Run create-render-profile."; exit 0; }
 
 jq -r '

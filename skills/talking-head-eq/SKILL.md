@@ -16,7 +16,7 @@ The preset is **per-user**, registered via the `onboard` skill. This plugin ship
 ### 1. Resolve preset
 
 ```bash
-DATA_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/claude-media-plugins/video-editing"
+DATA_DIR="${CLAUDE_USER_DATA:-${XDG_DATA_HOME:-$HOME/.local/share}/claude-plugins}/video-editing"
 PREFS_FILE="$DATA_DIR/preferences.json"
 test -f "$PREFS_FILE" || { echo "No preferences. Run onboard first."; exit 1; }
 

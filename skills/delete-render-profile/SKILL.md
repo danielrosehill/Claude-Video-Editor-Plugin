@@ -12,7 +12,7 @@ Remove a profile from `render-profiles.json`. Confirms before deleting.
 ## Procedure
 
 ```bash
-DATA_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/claude-media-plugins/video-editing"
+DATA_DIR="${CLAUDE_USER_DATA:-${XDG_DATA_HOME:-$HOME/.local/share}/claude-plugins}/video-editing"
 PROFILES_FILE="$DATA_DIR/render-profiles.json"
 test -f "$PROFILES_FILE" || { echo "No profiles file."; exit 0; }
 ```

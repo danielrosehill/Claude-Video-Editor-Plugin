@@ -14,7 +14,7 @@ Apply a saved render profile to a file, a folder of files, or a list of files. T
 ### 1. Resolve config
 
 ```bash
-DATA_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/claude-media-plugins/video-editing"
+DATA_DIR="${CLAUDE_USER_DATA:-${XDG_DATA_HOME:-$HOME/.local/share}/claude-plugins}/video-editing"
 PROFILES_FILE="$DATA_DIR/render-profiles.json"
 SYS_FILE="$DATA_DIR/system-profile.json"
 test -f "$PROFILES_FILE" || { echo "No saved profiles — run create-render-profile first."; exit 1; }

@@ -14,7 +14,7 @@ Scaffold a project workspace inside the registered video index.
 ### 1. Resolve the index
 
 ```bash
-INDEX_FILE="${XDG_DATA_HOME:-$HOME/.local/share}/claude-media-plugins/video-editing/index.json"
+INDEX_FILE="${CLAUDE_USER_DATA:-${XDG_DATA_HOME:-$HOME/.local/share}/claude-plugins}/video-editing/index.json"
 test -f "$INDEX_FILE" || { echo "No index — run setup-index first."; exit 1; }
 INDEX_PATH=$(jq -r .path "$INDEX_FILE" 2>/dev/null || grep -oP '"path":\s*"\K[^"]+' "$INDEX_FILE")
 ```

@@ -12,7 +12,7 @@ Open the registered video index in a terminal (or file manager fallback) and lis
 ## Procedure
 
 ```bash
-INDEX_FILE="${XDG_DATA_HOME:-$HOME/.local/share}/claude-media-plugins/video-editing/index.json"
+INDEX_FILE="${CLAUDE_USER_DATA:-${XDG_DATA_HOME:-$HOME/.local/share}/claude-plugins}/video-editing/index.json"
 test -f "$INDEX_FILE" || { echo "No video index registered. Run setup-index first."; exit 1; }
 PATH_=$(jq -r .path "$INDEX_FILE" 2>/dev/null || grep -oP '"path":\s*"\K[^"]+' "$INDEX_FILE")
 test -d "$PATH_" || { echo "Index path missing: $PATH_"; exit 1; }

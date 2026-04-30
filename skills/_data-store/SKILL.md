@@ -11,7 +11,7 @@ All persistent state for this plugin lives in a single per-user directory. Skill
 ## Location
 
 ```
-${XDG_DATA_HOME:-$HOME/.local/share}/claude-media-plugins/video-editing/
+${CLAUDE_USER_DATA:-${XDG_DATA_HOME:-$HOME/.local/share}/claude-plugins}/video-editing/
 ```
 
 ## Files

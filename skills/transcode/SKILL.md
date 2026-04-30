@@ -14,7 +14,7 @@ Generic, on-demand transcoding. Unlike `render-with-profile` (which uses a saved
 ### 1. Resolve system profile
 
 ```bash
-DATA_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/claude-media-plugins/video-editing"
+DATA_DIR="${CLAUDE_USER_DATA:-${XDG_DATA_HOME:-$HOME/.local/share}/claude-plugins}/video-editing"
 SYS_FILE="$DATA_DIR/system-profile.json"
 test -f "$SYS_FILE" && HAVE_SYS=1 || HAVE_SYS=0
 ```

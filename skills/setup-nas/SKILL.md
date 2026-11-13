@@ -26,7 +26,7 @@ If one exists, show the user the current config and ask whether to update or rep
 
 1. **Transport**
    - `mount` — locally-mounted path (NFS / SMB / SSHFS already mounted).
-   - `ssh` — remote host via rsync-over-ssh (e.g. `daniel@nas.local:/volume1/video`).
+   - `ssh` — remote host via rsync-over-ssh (e.g. `user@nas.local:/volume1/video`).
 2. **Raw source path** — where unsorted/incoming footage lives. Required if they want `pull-from-nas`.
 3. **Render archive path** — where finished renders should be pushed. Required if they want `push-to-nas`. Can be the same root as raw or different.
 4. **Optional ssh alias / port / identity file** — only if transport is `ssh` and non-default.

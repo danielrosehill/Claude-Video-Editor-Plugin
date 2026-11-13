@@ -100,4 +100,4 @@ Always validate cue count is unchanged. If it isn't, abort and keep `.tmp` for i
 
 - For TXT input (plain transcript, no timing), skip the SRT-aware structure-preserving logic and run the same passes line-by-line.
 - LLM polish on a long transcript is the slow step. For big files, run heuristic first, ask the user if they want to also LLM-polish.
-- Glossary lives at the project level, not the data store — the right vocabulary is project-specific (one project's "Daniel" is another's "Daniela").
+- Glossary lives at the project level, not the data store — the right vocabulary is project-specific (one project's "Alex" is another's "Alexa").

@@ -20,14 +20,14 @@ To install this plugin:
 
 ---
 
-Claude Code plugin for video slash commands and agents.
+Skills for local video editing and processing: Kdenlive projects, headless `melt` renders, ffmpeg render
+profiles and transcodes, silence cutting, subtitles, loudness, and NAS sync.
 
-## Installation
+## Complementary plugins
 
-```bash
-/plugin marketplace add danielrosehill/CC-Plugin-video
-/plugin install video@danielrosehill
-```
+- [`remote-video-editing`](https://github.com/danielrosehill/Remote-Video-Editing): GPU-heavy steps on
+  rented cloud GPUs (Modal), starting with AI voice cleanup (`clean-voice-sidon`). The
+  `complementary-plugins` skill lists and installs it.
 
 ## Author
 
